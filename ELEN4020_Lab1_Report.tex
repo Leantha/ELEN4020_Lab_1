@@ -1,0 +1,68 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{authblk}
+
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\title{\textbf{ELEN4020 Data Intesive Computing for Data Science\\Lab 1 Report}}
+\author{Leantha Naicker (788753), Fiona Rose Oloo (790305),\\Boitumelo Mantji (823869), Justine Wright (869211)}
+\affil{The University of Witwatersrand}
+\renewcommand\Affilfont{\itshape\small}
+\begin{document}
+\maketitle
+\begin{abstract}
+This report contains a short description of the methods used to solve the problems presented in this lab. The lab contained three procedures that were to be carried out on K-Dimensional arrays and the pseudo code to each procedure can be found within the report.
+\end{abstract}
+
+\section{Introduction}
+The objective of this lab was to write a C language based program, which can dynamically generate multi-dimensional integer arrays and perform three procedures on the arrays. Additionally, a method to traverse a K-dimensional array, with K varying, was implemented. The sections shows more detail about the implemented solution. 
+
+\section{Procedure 1}
+This procedure moves through the array using a pointer and the size. As it traverses the array, it checks each element to see if it set to zero, if not then it sets it to zero. The routine for this code can be seen below.\\ \\
+\textbf{Algorithm for Procedure1:} Initialize all elements in K-dimension integer array with bounds $N_{0}, N_{1}, ... N_{K-1}$ to zero. \\ \\
+\textbf{Procedure1 (ptr\_A, size)} \\
+\indent \textbf{in:} a pointer to the beginning of the array and the size of the array counter\\
+\indent while $counter < size-1$ do \\
+\indent\indent call setZero(ptr\_A*) \\
+\indent\indent ptr\_A ++ \\
+\indent\indent counter ++ \\
+\indent end while
+\section{Procedure 2}
+This procedure takes in a pointer to the first element of the array and the array size. The procedure determines what integer value would represent ten percent of the array and changes the first ten percent of the array to 1's. The routine of this code can be seen below. \\ \\
+\textbf{Algorithm for Procedure2:} Set ten percent of the elements in a K-dimensional array to 1's.\\ \\
+\textbf{Procedure2 (ptr\_A, size)} \\
+\indent \textbf{in:} a pointer to the beginning of the array and the size of the array\\
+\indent percent $\leftarrow$ 10\\
+\indent ones $\leftarrow$$size * (percent / 100)$ \\
+\indent for loop (0 to ones) \\
+\indent \indent ptr\_A  $\leftarrow$ 1 \\
+\indent\indent ptr\_A ++ \\
+\indent close for loop
+\section{Procedure 3}
+This procedure randomly chooses five percent of the array, traverses through the chosen five percent elements and prints their respective indices and values. The indices are calculated by using a simple maths function. The routine for procedure 3 is described below.\\ \\
+\textbf{Algorithm for Procedure3:} Randomly selects five percent of the array elements in a random uniform fashion, prints the respective indices of the elements and the value at the chosen cell. \\ \\
+\textbf{Procedure3 (ptr\_A, size, dimensions, bounds)}\\
+\indent \textbf{in:} a pointer to the beginning of the array, the size of the array, the dimensions and the bounds \\
+\indent percent $\leftarrow$ 5 \\
+\indent numberofElements $\leftarrow$ call numberFromPercent(percent) \\
+\indent range $\leftarrow$ Range $0$ and $size - numberFromPercent $\\ 
+\indent linearIndex $\leftarrow$ call  randomElements (range) \\
+\indent shift ptr\_A by linearIndex \\
+\indent for (j $\leftarrow$ 0 to $5\%$ of size) \\
+\indent\indent index $\leftarrow$ call calculateIndex(bounds, dimensions, linearIndex, size)\\
+\indent\indent call printSeries(index, dimensions, true)\\
+\indent\indent call printSeries(ptr\_A, 1, false)\\
+\indent\indent ptr\_A ++ \\
+\indent\indent linearIndex++;\\
+\indent\indent deleteArray(index)\\
+\indent end for\\
+\section{Array Generation}
+A dynamic array was generated on the heap memory by calculating the size needed and allocating a pointer to the memory. Since arrays are sequential containers (meaning that the memory is next to each other), the arrays were flattened. The size calculation involved multiplying the bounds for each dimension of the array. 
+\section{Traversing the Array}
+As mentioned in the above section, the arrays generated were flattened, so a pointer was used to move through the array. In order to do so, the start address of the array and the size of the array needed to be kept track of to prevent errors.
+\section{Conclusion}
+The is use of C-programming to write three procedures which takes a K-dimensional integer array as input has been presented. Each array element is set to zero in the first procedure while the in the second procedure, 10\% of the elements of the array are set to 1's. The third procedure,randomly selects 5 \% of the elements of the array the coordinate indices are then printed and the contained values. A main program was created that implemented the three procedures to dynamically create a 2D,3D, 4D and 5D array. 
+\end{document}
